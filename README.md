@@ -7,11 +7,12 @@ It does not give a 100% proof, that you are not vulnerable, but it gives a hint 
 - checks for packages containing log4j and Solr ElasticSearch
 - checks if Java is installed
 - Analyzes JAR/WAR/EAR files
+- Remediates Log4j 1.X by deleting JMSAppender class and 2.X by deleting JndiLookup on JAR files
 - Option of checking hashes of .class files in archives
 
 ## Run with:
 
-    wget https://raw.githubusercontent.com/rubo77/log4j_checker_beta/main/log4j_checker_beta.sh -q -O - |bash
+    wget https://raw.githubusercontent.com/caggri/log4j_checker_beta/main/log4j_checker_beta.sh -q -O - |bash
 
 ## Hash checking
 
