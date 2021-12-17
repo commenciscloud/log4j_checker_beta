@@ -66,6 +66,8 @@ find \
         else
           ok "Nothing to remediate on $line"
         fi
+     else
+        ok "Nothing to remediate on $line"
     fi
 done
 }
