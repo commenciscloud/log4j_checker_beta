@@ -10,9 +10,14 @@ It does not give a 100% proof, that you are not vulnerable, but it gives a hint 
 - Remediates Log4j 1.X by deleting JMSAppender class and 2.X by deleting JndiLookup on JAR files
 - Option of checking hashes of .class files in archives
 
-## Run with:
+## Run with Remediation:
 
     wget https://raw.githubusercontent.com/commenciscloud/log4j_checker_beta/main/log4j_checker_beta.sh -q -O - |bash
+
+## Run only Checker:
+
+    wget https://raw.githubusercontent.com/commenciscloud/log4j_checker_beta/main/log4j_checker.sh -q -O - |bash
+
 
 ## Hash checking
 
