@@ -56,13 +56,13 @@ find \
   | while read -r line ; do \
     if [[ $line == *"-1."* ]]; then
       if unzip -l $line | grep JMSAppender.class 2>&1 > /dev/null ; then
-        ok "$line is vulnerable"
+        warn "$line is vulnerable"
       else
         ok "$line is not vulnerable"
       fi 
     elif [[ $line == *"log4j-core"* ]]; then
         if unzip -l $line | grep JndiLookup.class 2>&1 > /dev/null ; then
-          ok "$line is vulnerable"
+          warn "$line is vulnerable"
         else
           ok "$line is not vulnerable"
         fi
