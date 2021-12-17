@@ -45,7 +45,7 @@ function locate_log4j() {
 }
 
 function remediation_process() {
-information "JAR files are collecting"
+
 find \
   /var /etc /usr /opt /lib* \
   -name "*log4j*.jar" \
@@ -56,13 +56,13 @@ find \
   | while read -r line ; do \
     if [[ $line == *"-1."* ]]; then
       if unzip -l $line | grep JMSAppender.class 2>&1 > /dev/null ; then
-        warn "$line is vulnerable"
+        warning "$line is vulnerable"
       else
         ok "$line is not vulnerable"
       fi 
     elif [[ $line == *"log4j-core"* ]]; then
         if unzip -l $line | grep JndiLookup.class 2>&1 > /dev/null ; then
-          warn "$line is vulnerable"
+          warning "$line is vulnerable"
         else
           ok "$line is not vulnerable"
         fi
@@ -161,6 +161,7 @@ else
 fi
 
 information "Log4 Vulnerability detection..."
+information "JAR files are collecting"
 OUTPUT="$(remediation_process)"
 if [ "$OUTPUT" ]; then
   printf "$OUTPUT"
