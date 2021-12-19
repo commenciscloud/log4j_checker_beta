@@ -47,7 +47,7 @@ function locate_log4j() {
 function remediation_process() {
 
 find \
-  /var /etc /usr /opt /lib* \
+  /var /home /root /etc /usr /opt /lib* \
   -name "*log4j*.jar" \
   -type f \
   2>&1 \
