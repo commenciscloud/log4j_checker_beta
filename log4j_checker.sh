@@ -72,16 +72,6 @@ find \
 done
 }
 
-function find_class_files() {
-  find /var /etc /usr /opt /lib* -type f\
-   -name "*.jar" -o \
-   -name "*.ear" -o \
-   -name "*.war" -o \
-   -name "*.properties" -o \
-   -name "*.class" -o \
-   -name "*.journal" \
-  | xargs grep -i 'JMSAppend\|JndiLookup' 
-}
 
 function find_jar_files() {
   find \
@@ -138,26 +128,6 @@ if [ "$JAVA" ]; then
     "so there could be log4j in such applications."
 else
   ok "Java is not installed"
-fi
-
-information "Analyzing JAR/WAR/EAR files..."
-if [ "$(command -v unzip)" ]; then
-  find_jar_files | while read -r jar_file; do
-    unzip -l "$jar_file" 2> /dev/null \
-      | grep -q -i "log4j" \
-      && warning "$jar_file contains log4j files"
-  done
-else
-  information "Cannot look for log4j inside JAR/WAR/EAR files (unzip not found)"
-fi
-
-information "Searching for  JMSAppend or JndiLookup in files..."
-OUTPUT="$(find_class_files)"
-if [ "$OUTPUT" ]; then
-  warning "Maybe vulnerable, those files contain the name:"
-  printf "$OUTPUT\n"
-else
-  ok  "JMSAppend or JndiLookup does not exists."
 fi
 
 information "Log4 Vulnerability detection..."
